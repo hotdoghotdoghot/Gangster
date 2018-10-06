@@ -1,0 +1,31 @@
+
+.loginButton:hover{
+	
+	-fx-text-fill: blue;
+}
+
+.closeButton:hover{
+	
+	-fx-text-fill: blue;
+
+}
+.createAccountScreenButton:hover{
+	
+	-fx-text-fill: blue;
+}
+
+.cancelCreateAccountButton:hover{
+	
+	-fx-text-fill: blue;
+}
+
+.createAccountButton:hover{
+	
+	-fx-text-fill: blue;
+}
+
+.goToLoginPageButton:hover{
+	
+	-fx-text-fill: blue;
+}
+
