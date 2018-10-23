@@ -7,8 +7,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
+import com.csci360.electionapp.model.Ballet;
+import com.csci360.electionapp.model.Voter;
 import com.mysql.cj.jdbc.result.ResultSetMetaData;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /*
  * All DB Queries, and connections
@@ -61,29 +68,27 @@ public class DBConnection {
     /* 
      * For logging into the ez-vote
      */
-	public static boolean loginQuery(String userid, String password) throws Exception {
+	public static String loginQuery(String userid, String password) throws Exception {
 		
 		
 		try{
 			
 			mySqlConnection();		
-			statement = connect.prepareStatement("SELECT COUNT(*) FROM evote.users WHERE USERID = ? AND PASSWORD = ?");
+			statement = connect.prepareStatement("SELECT User_Type FROM evote.users WHERE USERID = ? AND PASSWORD = ?");
 			statement.setString(1, userid);
 			statement.setString(2, password);
 			resultSet = statement.executeQuery();
-			int userFound = -1;
+			int userFound = 0;
+			String userType = null;
 			while (resultSet.next()) {
-				userFound = Integer.parseInt(resultSet.getString(1));
+				userFound = userFound+1;
+				userType = resultSet.getString(1);
+				
 			}
 			//writeResultSet(resultSet);
-			if(userFound == 0) {
-				close();
-        		 	return false;     
-			}
-			else {
-				close();
-				return true;
-			}
+			close();
+			return userType;     
+			
 		
 		} catch (Exception e) {
 			throw e;
@@ -109,6 +114,60 @@ public class DBConnection {
 			throw e;
 		}
 	}
+	
+    /* 
+     * For logging into the ez-vote
+     */
+	public static ObservableList<Ballet> getAllBallets() throws Exception {
+		
+		
+		try{
+			
+			mySqlConnection();		
+			statement = connect.prepareStatement("SELECT name FROM evote.ballets");
+			resultSet = statement.executeQuery();
+			ObservableList<Ballet> balletsData = FXCollections.observableArrayList();
+			
+			while (resultSet.next()) {
+				System.out.println(resultSet.getString(1));
+				balletsData.add(new Ballet(resultSet.getString(1)));
+				
+			}
+			//writeResultSet(resultSet);
+			close();
+			return balletsData;     
+			
+		
+		} catch (Exception e) {
+			throw e;
+			}
+	}
+	
+	
+	public static ObservableList<Voter> getAllUsers() throws Exception {
+		
+		
+		try{
+			
+			mySqlConnection();		
+			statement = connect.prepareStatement("SELECT USERID,First_Name,Last_Name FROM evote.users");
+			resultSet = statement.executeQuery();
+			ObservableList<Voter> voterData = FXCollections.observableArrayList();
+			
+			while (resultSet.next()) {
+				System.out.println(resultSet.getString(1));
+				voterData.add(new Voter(resultSet.getString(1),resultSet.getString(2),resultSet.getString(3)));
+				
+			}
+			//writeResultSet(resultSet);
+			close();
+			return voterData;     
+			
+		
+		} catch (Exception e) {
+			throw e;
+			}
+	}
 	/*
 	 * For using when you want to see what the query results.. For Debugging
 	 */
@@ -116,12 +175,8 @@ public class DBConnection {
 
         while (resultSet.next()) {
 
-        		String id = resultSet.getString(1);
-            String user = resultSet.getString(2);
-            String password = resultSet.getString(3);
-            System.out.println("User: " + user);
-            System.out.println("password: " + password);
-
+            String id = resultSet.getString(1);
+            System.out.println(id); 
         }
 	}
 }

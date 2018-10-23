@@ -28,7 +28,7 @@ public class CreateAccountController {
     
     
 	/*
-	 * Switch scene to Login Screen. (Used for Logging out)
+	 * Switch scene to Login Screen.
 	 */
     
     public void goToLoginScreen(ActionEvent event)throws Exception {
@@ -44,7 +44,7 @@ public class CreateAccountController {
     }
     
     /*
-     * Adds a new account for the ez-vote
+     * Adds a new account for the better ballet
      */
     public void createAccount(ActionEvent event) throws Exception {
     		

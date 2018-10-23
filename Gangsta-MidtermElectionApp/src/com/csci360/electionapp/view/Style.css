@@ -28,4 +28,62 @@
 	
 	-fx-text-fill: blue;
 }
+.button:hover{
+	-fx-text-fill: blue;
+}
 
+.scroll-pane {
+   -fx-background-color: transparent;
+}
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+.scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+.scroll-bar:horizontal{
+    -fx-background-color:transparent;
+}
+.table-view{
+   -fx-background-color: transparent;
+   -fx-table-cell-border-color: transparent;
+}
+
+.table-view:focused{
+    -fx-background-color: transparent;
+}
+.table-view .column-header-background{
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: #b4bec3;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-row-cell{
+    -fx-background-color: -fx-table-cell-border-color, #454b4f;
+}
+
+ 
+.table-row-cell:selected {
+    -fx-background-color: #005797;
+
+}
+.scroll-bar:vertical .thumb{
+    -fx-background-color:#b4bec3;
+}
+.scroll-bar:horizontal .thumb{
+    -fx-background-color:#b4bec3;
+}
+.table-row-cell{
+    -fx-background-color: -fx-table-cell-border-color, #454b4f;
+}
+ 
+.table-view .table-cell{
+    -fx-text-fill: #b4bec3;
+}

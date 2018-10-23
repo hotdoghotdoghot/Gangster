@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-image: url(&quot;/com/csci360/electionapp/images/BetterBallotDashboard.jpg&quot;); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.csci360.electionapp.controller.AdminMainMenuController">
+<AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-image: url(&quot;/com/csci360/electionapp/images/BetterBallotDashboardStats.jpg&quot;); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.csci360.electionapp.controller.AdminMainMenuController">
    <children>
       <VBox layoutX="1.0" layoutY="41.0" prefHeight="559.0" prefWidth="147.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="452.0" AnchorPane.topAnchor="41.0">
          <children>
@@ -28,15 +28,5 @@
             </Button>
          </children>
       </HBox>
-      <Button layoutX="190.0" layoutY="69.0" mnemonicParsing="false" onAction="#configureBallets" opacity="0.44" prefHeight="155.0" prefWidth="153.0" style="-fx-background-color: transparent;" styleClass="createAccountButton" stylesheets="@Style.css" text="Ballet Configuration" textAlignment="CENTER" textFill="#9ba5ac" wrapText="true">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
-      <Button layoutX="396.0" layoutY="69.0" mnemonicParsing="false" onAction="#configureUsers" opacity="0.44" prefHeight="155.0" prefWidth="153.0" style="-fx-background-color: transparent;" styleClass="createAccountScreenButton" stylesheets="@Style.css" text="User Administraion" textAlignment="CENTER" textFill="#9ba5ac" wrapText="true">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>

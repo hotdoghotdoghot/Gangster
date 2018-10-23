@@ -29,8 +29,9 @@ public class BetterBallot extends Application {
         this.primaryStage.setTitle("Better Ballot");
 
        initRootLayout();
-       showLogin();
-      //showMainMenu();
+       //showLogin();
+       showMainMenu();
+       //showVoterMenu();
 	}
 	
     public void initRootLayout() {
@@ -69,7 +70,23 @@ public class BetterBallot extends Application {
         try {
             //Show login screen.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(BetterBallot.class.getResource("/com/csci360/electionapp/view/MainMenu.fxml"));
+            loader.setLocation(BetterBallot.class.getResource("/com/csci360/electionapp/view/AdminMainMenu.fxml"));
+            AnchorPane mainMenu = (AnchorPane) loader.load();            
+            Scene scene = new Scene(mainMenu);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    //For Debugging and Developing 
+    public void showVoterMenu() {
+        try {
+            //Show login screen.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(BetterBallot.class.getResource("/com/csci360/electionapp/view/VoterMainMenu.fxml"));
             AnchorPane mainMenu = (AnchorPane) loader.load();            
             Scene scene = new Scene(mainMenu);
             primaryStage.setScene(scene);
