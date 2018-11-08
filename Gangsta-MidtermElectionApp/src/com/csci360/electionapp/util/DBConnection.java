@@ -54,7 +54,7 @@ public class DBConnection {
 	    		}
 
 	    		if (statement != null) {
-	        statement.close();
+	    			statement.close();
 	    		}
 	    		
 	    		if (connect != null) {
@@ -96,7 +96,7 @@ public class DBConnection {
 	}
 	
     /* 
-     * Adding Account to EZ-Vote
+     * Adding Account to Better Ballot
      */
 	public static void addAccountQuery(String userid, String password, String firstName, String lastName) throws Exception {
 		
@@ -110,6 +110,40 @@ public class DBConnection {
 			statement.setString(4, lastName);
 			statement.executeUpdate();
 		
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+	
+	
+	public static void addBalletQuery(String[] fNameArray, String[] lNameArray, String balletName) throws Exception {
+		
+		String id = null;
+		try{
+
+			mySqlConnection();	
+			statement = connect.prepareStatement("INSERT INTO ballets(name)VALUES(?)");
+			statement.setString(1, balletName);
+			statement.executeUpdate();
+			
+			statement = connect.prepareStatement("SELECT ID FROM ballets WHERE NAME = ?");
+			statement.setString(1, balletName);
+			resultSet = statement.executeQuery();
+			
+	        while (resultSet.next()) {
+	        	id = resultSet.getString(1);     
+	        }
+	        System.out.print(fNameArray.length);
+	        int i=0;
+			while(fNameArray[i].compareTo("") != 0) {
+				
+				statement = connect.prepareStatement("INSERT INTO canidates(ballet_id,first_name,last_name) VALUES(?,?,?)");
+				statement.setString(1, id);
+				statement.setString(2, fNameArray[i]);
+				statement.setString(3, lNameArray[i]);
+				statement.executeUpdate();
+				i++;
+			}
 		} catch (Exception e) {
 			throw e;
 		}

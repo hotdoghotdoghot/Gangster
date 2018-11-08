@@ -61,7 +61,7 @@
             </GridPane>
             <HBox prefHeight="82.0" prefWidth="196.0">
                <children>
-                  <Button id="button" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: transparent;" stylesheets="@Style.css" text="Add" textAlignment="CENTER" textFill="#454b4f">
+                  <Button id="button" mnemonicParsing="false" onAction="#showCreateBallet" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: transparent;" stylesheets="@Style.css" text="Add" textAlignment="CENTER" textFill="#454b4f">
                      <HBox.margin>
                         <Insets left="10.0" top="27.0" />
                      </HBox.margin>

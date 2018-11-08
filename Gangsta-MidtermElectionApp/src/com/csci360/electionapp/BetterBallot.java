@@ -20,7 +20,7 @@ import com.csci360.electionapp.util.DBConnection;
 
 public class BetterBallot extends Application {
 	
-    private Stage primaryStage;
+    public static Stage primaryStage;
     private BorderPane rootLayout;    
     
 	@Override
@@ -31,7 +31,8 @@ public class BetterBallot extends Application {
        initRootLayout();
        //showLogin();
        showMainMenu();
-       //showVoterMenu();
+      // showVoterMenu();
+      // showBalletConfigDialog();
 	}
 	
     public void initRootLayout() {
@@ -91,6 +92,26 @@ public class BetterBallot extends Application {
             Scene scene = new Scene(mainMenu);
             primaryStage.setScene(scene);
             primaryStage.show();
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    //For Debugging and Developing 
+    public void showBalletConfigDialog() {
+        try {
+            //Show login screen.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(BetterBallot.class.getResource("/com/csci360/electionapp/view/AddBalletDialog.fxml"));
+            AnchorPane mainMenu = (AnchorPane) loader.load();            
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Create Ballet");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene Dialogscene = new Scene(mainMenu);
+            dialogStage.setScene(Dialogscene);
+            dialogStage.show();
+            
             
         } catch (IOException e) {
             e.printStackTrace();

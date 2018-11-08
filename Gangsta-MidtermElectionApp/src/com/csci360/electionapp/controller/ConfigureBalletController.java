@@ -1,5 +1,6 @@
 package com.csci360.electionapp.controller;
 
+import com.csci360.electionapp.BetterBallot;
 import com.csci360.electionapp.model.Ballet;
 import com.csci360.electionapp.util.DBConnection;
 
@@ -11,18 +12,22 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ConfigureBalletController {
 	
+	
+	//For viewing the current ballets 
 	@FXML
 	private TableView<Ballet> balletTable;
 	@FXML
 	private TableColumn<Ballet, String> balletNameColumn;
 	
-	
-	
-	
+	public static Stage dialogStage = new Stage(); 
+
 	
 	public void initialize() {
 		try {
@@ -85,9 +90,7 @@ public class ConfigureBalletController {
 			
 			throw e;
 		} 
-    }
-    
-    
+    }    
 	/*
 	 * Setting Button Clicked. (Used for viewing account settings)
 	 */
@@ -104,6 +107,18 @@ public class ConfigureBalletController {
 			throw e;
 		} 
     }
+    public void showCreateBallet(ActionEvent event)throws Exception {
+    	
+    	
+    	FXMLLoader loader = new FXMLLoader();
+    	loader.setLocation(BetterBallot.class.getResource("/com/csci360/electionapp/view/AddBalletDialog.fxml"));
+    	AnchorPane mainMenu = (AnchorPane) loader.load();               
+    	dialogStage.setTitle("Create Ballet");
+    	dialogStage.initModality(Modality.WINDOW_MODAL);
+    	Scene Dialogscene = new Scene(mainMenu);
+    	dialogStage.setScene(Dialogscene);
+    	dialogStage.show();
         
+    }
 
 }

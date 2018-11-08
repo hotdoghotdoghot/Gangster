@@ -22,7 +22,6 @@ public class CreateAccountController {
     @FXML
     private TextField fistNameField;
 
-
     @FXML
     private TextField lastNameField;
     

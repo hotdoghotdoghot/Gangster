@@ -13,8 +13,10 @@
       <VBox layoutX="1.0" layoutY="41.0" prefHeight="559.0" prefWidth="147.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="452.0" AnchorPane.topAnchor="41.0">
          <children>
             <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="147.0" style="-fx-background-color: transparent;" styleClass="goToLoginPageButton" stylesheets="@Style.css" text="Cast Vote         " textFill="#9ba5ac" />
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="147.0" style="-fx-background-color: transparent;" styleClass="createAccountButton" stylesheets="@Style.css" text="Statistics         " textFill="#9ba5ac" />
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="147.0" style="-fx-background-color: transparent;" styleClass="createAccountButton" stylesheets="@Style.css" text="Settings          " textFill="#9ba5ac" />
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="147.0" style="-fx-background-color: transparent;" styleClass="createAccountButton" stylesheets="@Style.css" text="User Settings          " textFill="#9ba5ac">
+               <padding>
+                  <Insets left="27.0" />
+               </padding></Button>
          </children></VBox>
       <HBox layoutX="154.0" prefHeight="39.0" prefWidth="600.0" AnchorPane.bottomAnchor="568.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
