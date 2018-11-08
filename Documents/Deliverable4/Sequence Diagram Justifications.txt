@@ -1,0 +1,13 @@
+SD1:
+The ConfigureUserController is the controller because it is the first part of the process
+and tells everything else what to do. The DBConnection is the information expert because
+it is responsible for handling and knowing the information given by Voter. And Voter is the
+creator because it instantiates the Voter object and userName information that the method is
+using.
+
+SD2:
+The ConfigureBalletController is the controller because like the ConfigureUserController it
+tells everything else what to do in the start. The DBConnection is the information expert
+because it is responsible for handling and knowing the information given by Ballet. And
+Ballet is the creator because it instantiates and creates the Ballet object and balletName
+that the method is using.
