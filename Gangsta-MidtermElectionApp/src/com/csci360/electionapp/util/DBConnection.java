@@ -6,11 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 import com.csci360.electionapp.model.Ballet;
+import com.csci360.electionapp.model.Canidate;
 import com.csci360.electionapp.model.Voter;
 import com.mysql.cj.jdbc.result.ResultSetMetaData;
 
@@ -25,6 +27,8 @@ public class DBConnection {
     private static Connection connect = null;
     private static PreparedStatement statement = null;
     private static ResultSet resultSet = null;
+    private static ResultSet nextResultSet = null;
+
     
     
     /* 
@@ -109,6 +113,7 @@ public class DBConnection {
 			statement.setString(3, firstName);
 			statement.setString(4, lastName);
 			statement.executeUpdate();
+			close();
 		
 		} catch (Exception e) {
 			throw e;
@@ -144,31 +149,103 @@ public class DBConnection {
 				statement.executeUpdate();
 				i++;
 			}
+			close();
 		} catch (Exception e) {
 			throw e;
 		}
 	}
 	
+	
+	public static void deleteAllCanidatesQuery(int balletId) throws Exception {
+		
+		try{
+			mySqlConnection();
+			statement = connect.prepareStatement("DELETE FROM canidates WHERE ballet_id = ?");
+			statement.setInt(1, balletId);
+			statement.executeUpdate();
+			close();
+			
+		}catch (Exception e) {
+			throw e;
+		}
+		
+	}
+	public static void deleteBallet(int balletId) throws Exception {
+		
+		try{
+			deleteAllCanidatesQuery(balletId);
+			mySqlConnection();
+			
+			statement = connect.prepareStatement("DELETE FROM ballets WHERE id = ?");
+			statement.setInt(1, balletId);
+			statement.executeUpdate();
+			close();
+			
+		}catch (Exception e) {
+			throw e;
+		}
+		
+	}
+	
+	
+	public static void updataBalletQuery(String[] fNameArray, String[] lNameArray, int balletID) throws Exception {
+		
+		try{
+			deleteAllCanidatesQuery(balletID);
+			mySqlConnection();
+	        int i=0;
+			while(fNameArray[i].compareTo("") != 0) {
+				
+				statement = connect.prepareStatement("INSERT INTO canidates(ballet_id,first_name,last_name) VALUES(?,?,?)");
+				statement.setInt(1, balletID);
+				statement.setString(2, fNameArray[i]);
+				statement.setString(3, lNameArray[i]);
+				statement.executeUpdate();
+				i++;
+			}
+			close();
+		}catch (Exception e) {
+			throw e;
+		}
+		
+	}
+	
+	
     /* 
-     * For logging into the ez-vote
+     * For logging into the better ballot
      */
 	public static ObservableList<Ballet> getAllBallets() throws Exception {
 		
 		
 		try{
 			
-			mySqlConnection();		
-			statement = connect.prepareStatement("SELECT name FROM evote.ballets");
+			mySqlConnection();
+			String fName;
+			String lName;
+			
+			statement = connect.prepareStatement("SELECT name, id FROM evote.ballets");
 			resultSet = statement.executeQuery();
 			ObservableList<Ballet> balletsData = FXCollections.observableArrayList();
 			
 			while (resultSet.next()) {
-				System.out.println(resultSet.getString(1));
-				balletsData.add(new Ballet(resultSet.getString(1)));
 				
-			}
-			//writeResultSet(resultSet);
+				ArrayList<Canidate> canidates = new ArrayList<Canidate>();
+				System.out.println(resultSet.getInt(2));
+				statement = connect.prepareStatement("SELECT first_name,last_name FROM evote.canidates WHERE ballet_id = ?");
+				statement.setInt(1, resultSet.getInt(2));
+				nextResultSet = statement.executeQuery();
+			
+				while (nextResultSet.next()){
+					fName = nextResultSet.getString(1);
+					lName = nextResultSet.getString(2);
+					Canidate canidate = new Canidate(fName,lName);
+					canidates.add(canidate);
+				}
+				balletsData.add(new Ballet(resultSet.getString(1),canidates,resultSet.getInt(2)));
+				
+			}			
 			close();
+			
 			return balletsData;     
 			
 		
@@ -209,7 +286,8 @@ public class DBConnection {
 
         while (resultSet.next()) {
 
-            String id = resultSet.getString(1);
+            String id = resultSet.getString(1)+ " " + resultSet.getString(2);
+            
             System.out.println(id); 
         }
 	}

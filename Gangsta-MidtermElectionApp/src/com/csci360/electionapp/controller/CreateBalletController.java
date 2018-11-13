@@ -39,6 +39,9 @@ public class CreateBalletController {
     private TextField lName4Field;
     @FXML
     private TextField lName5Field;
+    
+    private Stage dialogStage;
+    private boolean okClicked = false;
 	
     @FXML
     private void initialize() {
@@ -54,9 +57,10 @@ public class CreateBalletController {
     	lName4Field.setText("");
     	lName5Field.setText("");
     }
-	
-	
-
+    
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
+    }
     
     public void createBallet(ActionEvent event) throws Exception {
 		
@@ -65,7 +69,6 @@ public class CreateBalletController {
     	String balletName = balletNameField.getText();
     	String[] fNameArray = {fName1Field.getText().toString(),fName2Field.getText().toString(),fName3Field.getText().toString(),fName4Field.getText().toString(),fName5Field.getText().toString()};
     	String[] lNameArray = {lName1Field.getText().toString(),lName2Field.getText().toString(),lName3Field.getText().toString(),lName4Field.getText().toString(),lName5Field.getText().toString()};
-    	System.out.println(fNameArray[1]);
 		//Connect to DB and Insert into user table. 
 		try {
 			
@@ -75,27 +78,17 @@ public class CreateBalletController {
 			throw e;
 		}
 		
-		ConfigureBalletController.dialogStage.close();
-		
-		try {	
-			
-    		Parent configBalletParent = FXMLLoader.load(getClass().getResource("/com/csci360/electionapp/view/AdminMainMenuConfigBallet.fxml"));
-    		Scene configBalletScene = new Scene(configBalletParent);
-			BetterBallot.primaryStage.setScene(configBalletScene);
-			BetterBallot.primaryStage.show();
-
-			
-		}catch (Exception e) {
-			
-			throw e;
-		}
+		ConfigureBalletController.createDialogStage.close();
 	}
     
     public void closeDialog() {
     	
-    	ConfigureBalletController.dialogStage.close();
+    	ConfigureBalletController.createDialogStage.close();
     }
-		
+    
+    public boolean isOkClicked() {
+        return okClicked;
+    }	
 		
 }
 

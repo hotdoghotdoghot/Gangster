@@ -1,15 +1,21 @@
 package com.csci360.electionapp.controller;
 
+import java.util.ArrayList;
+
 import com.csci360.electionapp.BetterBallot;
 import com.csci360.electionapp.model.Ballet;
+import com.csci360.electionapp.model.Canidate;
 import com.csci360.electionapp.util.DBConnection;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -22,21 +28,53 @@ public class ConfigureBalletController {
 	
 	//For viewing the current ballets 
 	@FXML
-	private TableView<Ballet> balletTable;
+	public TableView<Ballet> balletTable;
+	@FXML
+	public TableView<Canidate> canidateTable;
 	@FXML
 	private TableColumn<Ballet, String> balletNameColumn;
-	
-	public static Stage dialogStage = new Stage(); 
+	@FXML
+	private TableColumn<Canidate, String> canidateFirstNameColumn;
+	@FXML
+	private TableColumn<Canidate, String> canidateLastNameColumn;
 
+
+
+	public static Stage createDialogStage = new Stage(); 
+	public static Stage editDialogStage = new Stage(); 
+	private FXMLLoader editLoader = new FXMLLoader();
+	private FXMLLoader createLoader = new FXMLLoader();
 	
+
+	@FXML
 	public void initialize() {
 		try {
+	    	
+	    	createLoader.setLocation(BetterBallot.class.getResource("/com/csci360/electionapp/view/AddBalletDialog.fxml"));
+	    	AnchorPane createDialogPane = (AnchorPane) createLoader.load();               
+	    	createDialogStage.setTitle("Create Ballet");
+	    	createDialogStage.initModality(Modality.WINDOW_MODAL);
+	    	createDialogStage.initOwner(BetterBallot.primaryStage);
+	    	Scene createDialogScene = new Scene(createDialogPane);
+	    	createDialogStage.setScene(createDialogScene);
 			
-			balletNameColumn.setCellValueFactory(cellData -> cellData.getValue().balletNameProperty());
-			balletTable.setItems(DBConnection.getAllBallets());
+	    	
+	    	editLoader.setLocation(BetterBallot.class.getResource("/com/csci360/electionapp/view/EditBalletDialog.fxml"));
+	    	AnchorPane editDialogPane = (AnchorPane) editLoader.load();   
+	    	
+	    	
+	    	editDialogStage.setTitle("Edit Ballet");
+	    	editDialogStage.initModality(Modality.WINDOW_MODAL);
+	    	editDialogStage.initOwner(BetterBallot.primaryStage);
+	    	Scene editDialogScene = new Scene(editDialogPane);
+	    	editDialogStage.setScene(editDialogScene);
+	    	
+	    	
+			updateDetails();
+	        
 			
 		} catch (Exception e) {
-			
+		
 			e.printStackTrace();
 		}
 	   }
@@ -107,18 +145,66 @@ public class ConfigureBalletController {
 			throw e;
 		} 
     }
-    public void showCreateBallet(ActionEvent event)throws Exception {
+    
+    public boolean showCreateBallet(ActionEvent event)throws Exception {
     	
+    	CreateBalletController controller = createLoader.getController();
+    	controller.setDialogStage(createDialogStage);
+    	createDialogStage.showAndWait();
+    	showBalletDetails(null);
+    	updateDetails();
+    	return controller.isOkClicked();
+        
+    }
+    
+    public void showEditBallet(ActionEvent event)throws Exception {
     	
-    	FXMLLoader loader = new FXMLLoader();
-    	loader.setLocation(BetterBallot.class.getResource("/com/csci360/electionapp/view/AddBalletDialog.fxml"));
-    	AnchorPane mainMenu = (AnchorPane) loader.load();               
-    	dialogStage.setTitle("Create Ballet");
-    	dialogStage.initModality(Modality.WINDOW_MODAL);
-    	Scene Dialogscene = new Scene(mainMenu);
-    	dialogStage.setScene(Dialogscene);
-    	dialogStage.show();
+    	Ballet selectedBallet = balletTable.getSelectionModel().getSelectedItem();	
+    	EditBalletController controller = editLoader.getController();
+    	controller.setDialogStage(editDialogStage);
+    	controller.setBallet(selectedBallet);   	
+    	editDialogStage.showAndWait();
+    	showBalletDetails(null);
+    	updateDetails();
+        
+    }
+    
+    public void showBalletDetails(Ballet ballet) {
+    	
+    	if(ballet != null){
+    		ArrayList<Canidate> newArray= new ArrayList<Canidate>(ballet.getCanidates());
+    		ObservableList<Canidate> canidates = FXCollections.observableArrayList(newArray);
+    		canidateTable.setItems(canidates);
+    	}
+    	else {
+    		
+    		canidateTable.setItems(null);
+    	}
+    }
+    public void updateDetails() throws Exception {
+    	
+		balletNameColumn.setCellValueFactory(cellData -> cellData.getValue().balletNameProperty());
+		balletTable.setItems(DBConnection.getAllBallets());
+		
+        canidateFirstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
+        canidateLastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
+        
+
+        // Listen for selection changes and show the person details when changed.
+        balletTable.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> showBalletDetails(newValue));
+    }
+  public void deleteBallot(ActionEvent event)throws Exception {
+    	
+    	Ballet selectedBallet = balletTable.getSelectionModel().getSelectedItem();	
+    	DBConnection.deleteBallet(selectedBallet.getBalletID());   	
+    	showBalletDetails(null);
+    	updateDetails();
         
     }
 
+    
+ 
 }
+    
+
