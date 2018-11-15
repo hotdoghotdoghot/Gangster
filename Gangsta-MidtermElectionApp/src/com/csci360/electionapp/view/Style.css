@@ -87,3 +87,10 @@
 .table-view .table-cell{
     -fx-text-fill: #b4bec3;
 }
+
+.alert{
+	-fx-background-color:#b4bec3;
+}	
+.alert:header *.header-panel{
+    -fx-background-color: #b4bec3;
+}

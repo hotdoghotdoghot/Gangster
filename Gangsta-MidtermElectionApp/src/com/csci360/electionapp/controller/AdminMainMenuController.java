@@ -15,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
+
 public class AdminMainMenuController {
 	
 
@@ -91,14 +92,14 @@ public class AdminMainMenuController {
     
 	public void configureBallets(ActionEvent event)throws Exception {
 
-		try {	
+		try {
 			
-    		Parent configBalletParent = FXMLLoader.load(getClass().getResource("/com/csci360/electionapp/view/AdminMainMenuConfigBallet.fxml"));
+    		Parent configBalletParent =  FXMLLoader.load(getClass().getResource("/com/csci360/electionapp/view/AdminMainMenuConfigBallet.fxml"));
     		Scene configBalletScene = new Scene(configBalletParent);
 			Stage configBalletStage = (Stage)((Node)event.getSource()).getScene().getWindow(); 
 			configBalletStage.setScene(configBalletScene);
 			configBalletStage.show();
-
+			
 			
 		}catch (Exception e) {
 			

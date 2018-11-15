@@ -1,6 +1,6 @@
 package com.csci360.electionapp.controller;
 
-import com.csci360.electionapp.model.Voter;
+import com.csci360.electionapp.model.User;
 import com.csci360.electionapp.util.DBConnection;
 
 import javafx.event.ActionEvent;
@@ -16,9 +16,9 @@ import javafx.stage.Stage;
 public class ConfigureUserController {
 	
 	@FXML
-	private TableView<Voter> usersTable;
+	private TableView<User> usersTable;
 	@FXML
-	private TableColumn<Voter, String> usersColumn;
+	private TableColumn<User, String> usersColumn;
 	
 	
 	

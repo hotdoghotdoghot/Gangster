@@ -2,23 +2,26 @@ package com.csci360.electionapp.model;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Voter {
+public class User {
 	
 		private final StringProperty userName;
 	 	private final StringProperty firstName;
 	    private final StringProperty lastName;
+	    private final StringProperty userType;
+	    private static int voterID;
 
 
-	    public Voter() {
-	        this(null, null, null);
+	    public User() {
+	        this(null, null, null, -1, null);
 	    }
 	    
 	
-	    public Voter( String userName, String firstName, String lastName) {
+	    public User( String userName, String firstName, String lastName,int voterID, String userType) {
 	    	this.userName = new SimpleStringProperty(userName);
 	        this.firstName = new SimpleStringProperty(firstName);
 	        this.lastName = new SimpleStringProperty(lastName);
-	        
+	        this.voterID = voterID;
+	        this.userType = new SimpleStringProperty(userType);
 	    }
 	    
 	    public String getFirstName() {
@@ -48,12 +51,29 @@ public class Voter {
 	        return userName.get();
 	    }
 
-	    public void setUserName(String lastName) {
-	        this.userName.set(lastName);
+	    public void setUserName(String userName) {
+	        this.userName.set(userName);
 	    }
 	    
 	    public StringProperty userNameProperty() {
 	        return userName;
+	    }
+	   
+	    
+	    public StringProperty voterIDProperty() {
+	        return userName;
+	    }
+	    
+	    public String getUserType() {
+	        return userType.get();
+	    }
+	    
+	    public StringProperty userType() {
+	        return userType;
+	    }
+	    
+	    public static int getVoterID() {
+	        return voterID;
 	    }
 
 

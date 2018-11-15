@@ -37,8 +37,8 @@ public class Ballet {
         this.balletName.set(balletName);
     } 
     
-    public void addCanidate(String fName, String lName) {
-    	Canidate canidate = new Canidate(fName,lName);
+    public void addCanidate(String fName, String lName, int canidateID) {
+    	Canidate canidate = new Canidate(fName,lName, canidateID);
         this.canidates.add(canidate);
     } 
     

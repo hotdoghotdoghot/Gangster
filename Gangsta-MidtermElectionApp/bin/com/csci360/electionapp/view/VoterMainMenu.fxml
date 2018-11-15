@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-image: url(&quot;/com/csci360/electionapp/images/VoterDashboard.jpg&quot;); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.csci360.electionapp.controller.AdminMainMenuController">
+<AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-image: url(&quot;/com/csci360/electionapp/images/VoterDashboard.jpg&quot;); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.csci360.electionapp.controller.CastVoteController">
    <children>
       <VBox layoutX="1.0" layoutY="41.0" prefHeight="559.0" prefWidth="147.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="452.0" AnchorPane.topAnchor="41.0">
          <children>
@@ -30,5 +30,36 @@
             </Button>
          </children>
       </HBox>
+      <ScrollPane id="scroll-pane" hbarPolicy="NEVER" layoutX="189.0" layoutY="55.0" prefHeight="490.0" prefWidth="161.0" stylesheets="@Style.css" vbarPolicy="ALWAYS">
+         <content>
+            <TableView id="table-view" fx:id="balletTable" prefHeight="490.0" prefWidth="145.0" stylesheets="@Style.css">
+               <columns>
+                  <TableColumn fx:id="balletNameColumn" editable="false" prefWidth="144.0" text="Select Ballet:" />
+               </columns>
+               <placeholder>
+                  <Label text="" />
+               </placeholder>
+            </TableView>
+         </content>
+      </ScrollPane>
+      <ScrollPane id="scroll-pane" hbarPolicy="NEVER" layoutX="375.0" layoutY="55.0" prefHeight="444.0" prefWidth="198.0" stylesheets="@Style.css" vbarPolicy="ALWAYS">
+         <content>
+            <TableView id="table-view" fx:id="canidateTable" prefHeight="444.0" prefWidth="198.0" stylesheets="@Style.css">
+               <columns>
+                  <TableColumn fx:id="canidateFirstNameColumn" editable="false" prefWidth="90.0" text="First Name" />
+                  <TableColumn fx:id="canidateLastNameColumn" editable="false" prefWidth="90.0" text="Last Name" />
+               </columns>
+               <placeholder>
+                  <Label text="" />
+               </placeholder>
+            </TableView>
+         </content>
+      </ScrollPane>
+      <VBox layoutX="358.0" layoutY="483.0" prefHeight="35.0" prefWidth="211.0" />
+      <Button id="button" layoutX="376.0" layoutY="501.0" mnemonicParsing="false" onAction="#castVote" prefHeight="32.0" prefWidth="180.0" style="-fx-background-color: transparent;" stylesheets="@Style.css" text="Vote!" textAlignment="CENTER" textFill="#454b4f">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -30,8 +30,8 @@ public class BetterBallot extends Application {
 
        initRootLayout();
        //showLogin();
-       showMainMenu();
-      // showVoterMenu();
+       //showMainMenu();
+      showVoterMenu();
       // showBalletConfigDialog();
 	}
 	

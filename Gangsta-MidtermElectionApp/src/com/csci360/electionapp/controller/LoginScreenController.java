@@ -2,6 +2,7 @@ package com.csci360.electionapp.controller;
 import java.io.IOException;
 import com.csci360.electionapp.BetterBallot;
 import com.csci360.electionapp.util.DBConnection;
+import com.csci360.electionapp.model.User;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +16,9 @@ import javafx.stage.Stage;
 
 
 public class LoginScreenController {
-
+	
+	private static User userLoggedIn = new User();
+	
     @FXML
     private TextField userIdField;
 
@@ -42,10 +45,11 @@ public class LoginScreenController {
 		//User Verification
     	try {
     			
-    		String loginVerification = DBConnection.loginQuery(userId, password);
-    			
+    		User userLoggedIn = DBConnection.loginQuery(userId, password);
+    		
     		//for admin user
-    		if(loginVerification.equals("admin")) {  
+    		
+    		if(userLoggedIn.getUserType().equals("admin")) {  
     				
             	Parent mainMenuParent = FXMLLoader.load(getClass().getResource("/com/csci360/electionapp/view/AdminMainMenu.fxml"));
             	Scene mainMenuScene = new Scene(mainMenuParent);
@@ -54,7 +58,7 @@ public class LoginScreenController {
     			mainMenuStage.show();
     		}
     		//for voter user
-    		else if(loginVerification.equals("voter")){
+    		else if(userLoggedIn.getUserType().equals("voter")){
     				
             	Parent mainMenuParent = FXMLLoader.load(getClass().getResource("/com/csci360/electionapp/view/VoterMainMenu.fxml"));
             	Scene mainMenuScene = new Scene(mainMenuParent);
@@ -64,6 +68,7 @@ public class LoginScreenController {
     		}	
     		//invalid login
     		else {	
+    			
     			loginFailed.setText("Invalid Username or Password");
     		}
     				
@@ -96,6 +101,11 @@ public class LoginScreenController {
     		}catch (Exception e) {
     			throw e;
     		} 
+    }
+    public static User getUserLogedIn() {
+    	
+		return userLoggedIn;
+    	
     }
     
     

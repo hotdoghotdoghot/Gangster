@@ -13,7 +13,7 @@ import java.util.Objects;
 
 import com.csci360.electionapp.model.Ballet;
 import com.csci360.electionapp.model.Canidate;
-import com.csci360.electionapp.model.Voter;
+import com.csci360.electionapp.model.User;
 import com.mysql.cj.jdbc.result.ResultSetMetaData;
 
 import javafx.collections.FXCollections;
@@ -72,26 +72,47 @@ public class DBConnection {
     /* 
      * For logging into the ez-vote
      */
-	public static String loginQuery(String userid, String password) throws Exception {
+	public static User loginQuery(String userid, String password) throws Exception {
 		
 		
 		try{
 			
 			mySqlConnection();		
-			statement = connect.prepareStatement("SELECT User_Type FROM evote.users WHERE USERID = ? AND PASSWORD = ?");
+			statement = connect.prepareStatement("SELECT ID, USERID, User_Type, First_Name, Last_Name, COUNT(*) FROM evote.users WHERE USERID = ? AND PASSWORD = ?");
 			statement.setString(1, userid);
 			statement.setString(2, password);
 			resultSet = statement.executeQuery();
+			
+			
 			int userFound = 0;
+			int id;
+			String userID = null;
 			String userType = null;
+			String userFirstName = null;
+			String userLastName = null;
+			User userLogedIn = null;
+			
+			
+			
 			while (resultSet.next()) {
-				userFound = userFound+1;
-				userType = resultSet.getString(1);
-				
+				userFound =  resultSet.getInt(6);
+				if(userFound == 1) {		
+					id = resultSet.getInt(1);
+					userID = resultSet.getString(2);
+					userType = resultSet.getString(3);
+					userFirstName = resultSet.getString(4);
+					userLastName = resultSet.getString(5);
+					userLogedIn = new User(userID, userFirstName, userLastName, id, userType);
+					
+				}
+				break;
+
 			}
-			//writeResultSet(resultSet);
 			close();
-			return userType;     
+			return userLogedIn;  
+			//writeResultSet(resultSet);
+			
+			   
 			
 		
 		} catch (Exception e) {
@@ -222,6 +243,7 @@ public class DBConnection {
 			mySqlConnection();
 			String fName;
 			String lName;
+			int canidateID;
 			
 			statement = connect.prepareStatement("SELECT name, id FROM evote.ballets");
 			resultSet = statement.executeQuery();
@@ -231,14 +253,16 @@ public class DBConnection {
 				
 				ArrayList<Canidate> canidates = new ArrayList<Canidate>();
 				System.out.println(resultSet.getInt(2));
-				statement = connect.prepareStatement("SELECT first_name,last_name FROM evote.canidates WHERE ballet_id = ?");
+				statement = connect.prepareStatement("SELECT first_name,last_name, id FROM evote.canidates WHERE ballet_id = ?");
 				statement.setInt(1, resultSet.getInt(2));
 				nextResultSet = statement.executeQuery();
 			
 				while (nextResultSet.next()){
 					fName = nextResultSet.getString(1);
 					lName = nextResultSet.getString(2);
-					Canidate canidate = new Canidate(fName,lName);
+					canidateID = nextResultSet.getInt(3);
+
+					Canidate canidate = new Canidate(fName,lName,canidateID);
 					canidates.add(canidate);
 				}
 				balletsData.add(new Ballet(resultSet.getString(1),canidates,resultSet.getInt(2)));
@@ -255,19 +279,30 @@ public class DBConnection {
 	}
 	
 	
-	public static ObservableList<Voter> getAllUsers() throws Exception {
+	public static ObservableList<User> getAllUsers() throws Exception {
 		
 		
 		try{
 			
 			mySqlConnection();		
-			statement = connect.prepareStatement("SELECT USERID,First_Name,Last_Name FROM evote.users");
+			statement = connect.prepareStatement("SELECT ID, USERID, User_Type, First_Name, Last_Name FROM evote.users");
 			resultSet = statement.executeQuery();
-			ObservableList<Voter> voterData = FXCollections.observableArrayList();
+			ObservableList<User> voterData = FXCollections.observableArrayList();
+			int id;
+			String userID = null;
+			String userType = null;
+			String userFirstName = null;
+			String userLastName = null;
+	
 			
 			while (resultSet.next()) {
-				System.out.println(resultSet.getString(1));
-				voterData.add(new Voter(resultSet.getString(1),resultSet.getString(2),resultSet.getString(3)));
+				System.out.println(resultSet.getString(1));				
+				id = resultSet.getInt(1);
+				userID = resultSet.getString(2);
+				userType = resultSet.getString(3);
+				userFirstName = resultSet.getString(4);
+				userLastName = resultSet.getString(5);
+				voterData.add(new User(userID, userFirstName, userLastName, id, userType));
 				
 			}
 			//writeResultSet(resultSet);
@@ -278,6 +313,24 @@ public class DBConnection {
 		} catch (Exception e) {
 			throw e;
 			}
+	}
+	
+	public static void castVoteQuery(int voterID, int balletID, int canidateID) throws Exception {
+		
+		try{
+
+			mySqlConnection();
+			statement = connect.prepareStatement("INSERT INTO votes(voter_id, ballet_id,canidate_id) VALUES(?,?,?)");
+			statement.setInt(1, voterID);
+			statement.setInt(2, balletID);
+			statement.setInt(3, canidateID);
+			statement.executeUpdate();
+			close();
+			
+		}catch (Exception e) {
+			throw e;
+		}
+		
 	}
 	/*
 	 * For using when you want to see what the query results.. For Debugging

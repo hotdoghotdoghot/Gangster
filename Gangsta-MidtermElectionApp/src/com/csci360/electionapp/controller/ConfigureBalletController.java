@@ -15,6 +15,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -194,13 +197,32 @@ public class ConfigureBalletController {
         balletTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showBalletDetails(newValue));
     }
-  public void deleteBallot(ActionEvent event)throws Exception {
+    
+    public void deleteBallot(ActionEvent event)throws Exception {
     	
-    	Ballet selectedBallet = balletTable.getSelectionModel().getSelectedItem();	
-    	DBConnection.deleteBallet(selectedBallet.getBalletID());   	
+    	
+        int selectedIndex = balletTable.getSelectionModel().getSelectedIndex();        
+        if (selectedIndex >= 0) {
+        	
+        	Ballet selectedBallet = balletTable.getSelectionModel().getSelectedItem();
+        	balletTable.getItems().remove(selectedIndex);
+        	DBConnection.deleteBallet(selectedBallet.getBalletID()); 
+        }
+        
+        else {
+            // Nothing selected.
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.initOwner(BetterBallot.getPrimaryStage());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Ballet Selected");
+            alert.setContentText("Please select a ballet to delete..");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(getClass().getResource("/com/csci360/electionapp/view/Style.css").toExternalForm());
+            dialogPane.getStyleClass().add("alert");
+            alert.showAndWait();
+        }
     	showBalletDetails(null);
     	updateDetails();
-        
     }
 
     
