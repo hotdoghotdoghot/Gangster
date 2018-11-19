@@ -7,7 +7,6 @@ import com.csci360.electionapp.model.*;
 
 import java.io.IOException;
 
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -17,11 +16,12 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import com.csci360.electionapp.util.DBConnection;
 
-/*
+// Alex's JUnit imports
+
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-*/
+
 
 public class BetterBallot extends Application {
 	
