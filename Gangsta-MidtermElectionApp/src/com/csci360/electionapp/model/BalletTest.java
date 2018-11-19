@@ -16,27 +16,26 @@ public class BalletTest
     {
 
     }
-
     @Test
     public void getBalletID() throws Exception
     {
-    }
 
+    }
     @Test
     public void getCanidates() throws Exception
     {
-    }
 
+    }
     @Test
     public void setBalletName() throws Exception
     {
-    }
 
+    }
     @Test
     public void addCanidate() throws Exception
     {
-    }
 
+    }
     @Test
     public void balletNameProperty() throws Exception
     {
