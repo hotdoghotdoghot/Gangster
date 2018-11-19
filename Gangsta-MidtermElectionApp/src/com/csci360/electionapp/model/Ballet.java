@@ -7,12 +7,16 @@ import java.util.List;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
 public class Ballet {
 	
  	private final StringProperty balletName;
  	private final int balletId;
  	private final ArrayList<Canidate> canidates;
- 	
+
  	
     public Ballet(){
         this(null,null, -1);

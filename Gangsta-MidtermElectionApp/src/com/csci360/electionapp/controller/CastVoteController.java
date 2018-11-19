@@ -96,7 +96,6 @@ public class CastVoteController {
     		ArrayList<Canidate> newArray= new ArrayList<Canidate>(ballet.getCanidates());
     		ObservableList<Canidate> canidates = FXCollections.observableArrayList(newArray);
     		canidateTable.setItems(canidates);
-    		
             canidateFirstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
             canidateLastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
             
