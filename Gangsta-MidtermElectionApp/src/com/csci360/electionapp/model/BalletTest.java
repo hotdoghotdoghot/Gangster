@@ -43,18 +43,24 @@ public class BalletTest
     @Test
     public void getCanidates() throws Exception
     {
-        ArrayList canidateList = new ArrayList();
+        ArrayList testCanList = new ArrayList();
         Canidate testCan1 = new Canidate("slime", "machine", 1);
         Canidate testCan2 = new Canidate("miles", "donB", 2);
         Canidate testCan3 = new Canidate("sad", "contest", 3);
 
-        canidateList.add(testCan1);
-        canidateList.add(testCan2);
-        canidateList.add(testCan3);
+        testCanList.add(testCan1);
+        testCanList.add(testCan2);
+        testCanList.add(testCan3);
 
-        assertEquals(canidateList,testBallet.getCanidates());
+        assertEquals(testCanList.toString(),testBallet.getCanidates().toString());
+        for(int i=3;i<0;i++)
+        {
+            assertEquals()
+        }
+
     }
-*/
+ */
+
     @Test
     public void setBalletName() throws Exception
     {
@@ -66,11 +72,4 @@ public class BalletTest
     {
         Canidate testCan4 = new Canidate("douglas", "falcon", 4);
     }
-    @Test
-    public void balletNameProperty() throws Exception
-    {
-        balletNameProp.set("testBallotName");
-        assertEquals(testBallet.balletNameProperty().toString(),balletNameProp.toString());
-    }
-
 }
