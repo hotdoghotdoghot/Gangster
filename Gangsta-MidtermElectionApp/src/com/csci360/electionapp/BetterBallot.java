@@ -17,6 +17,11 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import com.csci360.electionapp.util.DBConnection;
 
+/*
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+*/
 
 public class BetterBallot extends Application {
 	
