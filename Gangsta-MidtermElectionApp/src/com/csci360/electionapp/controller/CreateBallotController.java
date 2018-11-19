@@ -13,12 +13,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class CreateBalletController {
+public class CreateBallotController {
 	
 	
-	//For adding a new ballet 
+	//For adding a new ballot 
     @FXML
-    private TextField balletNameField;
+    private TextField ballotNameField;
     @FXML
     private TextField fName1Field;
     @FXML
@@ -45,7 +45,7 @@ public class CreateBalletController {
 	
     @FXML
     private void initialize() {
-    	balletNameField.setText("");
+    	ballotNameField.setText("");
     	fName1Field.setText("");
     	fName2Field.setText("");
     	fName3Field.setText("");
@@ -62,28 +62,29 @@ public class CreateBalletController {
         this.dialogStage = dialogStage;
     }
     
-    public void createBallet(ActionEvent event) throws Exception {
+    public void createBallot(ActionEvent event) throws Exception {
 		
     	
 		// Get fields from TextFields
-    	String balletName = balletNameField.getText();
+    	String ballotName = ballotNameField.getText();
     	String[] fNameArray = {fName1Field.getText().toString(),fName2Field.getText().toString(),fName3Field.getText().toString(),fName4Field.getText().toString(),fName5Field.getText().toString()};
     	String[] lNameArray = {lName1Field.getText().toString(),lName2Field.getText().toString(),lName3Field.getText().toString(),lName4Field.getText().toString(),lName5Field.getText().toString()};
+    	
 		//Connect to DB and Insert into user table. 
 		try {
 			
-			DBConnection.addBalletQuery(fNameArray, lNameArray, balletName);
+			DBConnection.addBallotQuery(fNameArray, lNameArray, ballotName);
 				
 		}catch (Exception e) {
 			throw e;
 		}
 		
-		ConfigureBalletController.createDialogStage.close();
+		ConfigureBallotController.createDialogStage.close();
 	}
     
     public void closeDialog() {
     	
-    	ConfigureBalletController.createDialogStage.close();
+    	ConfigureBallotController.createDialogStage.close();
     }
     
     public boolean isOkClicked() {

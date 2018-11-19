@@ -28,7 +28,7 @@
             </Button>
          </children>
       </HBox>
-      <Button layoutX="190.0" layoutY="69.0" mnemonicParsing="false" onAction="#configureBallets" opacity="0.44" prefHeight="155.0" prefWidth="153.0" style="-fx-background-color: transparent;" styleClass="createAccountButton" stylesheets="@Style.css" text="Ballet Configuration" textAlignment="CENTER" textFill="#9ba5ac" wrapText="true">
+      <Button layoutX="190.0" layoutY="69.0" mnemonicParsing="false" onAction="#configureBallots" opacity="0.44" prefHeight="155.0" prefWidth="153.0" style="-fx-background-color: transparent;" styleClass="createAccountButton" stylesheets="@Style.css" text="Ballot Configuration" textAlignment="CENTER" textFill="#9ba5ac" wrapText="true">
          <font>
             <Font size="18.0" />
          </font>

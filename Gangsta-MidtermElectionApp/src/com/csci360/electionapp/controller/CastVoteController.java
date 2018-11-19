@@ -4,8 +4,8 @@ package com.csci360.electionapp.controller;
 import java.util.ArrayList;
 
 import com.csci360.electionapp.BetterBallot;
-import com.csci360.electionapp.model.Ballet;
-import com.csci360.electionapp.model.Canidate;
+import com.csci360.electionapp.model.Ballot;
+import com.csci360.electionapp.model.Candidate;
 import com.csci360.electionapp.model.User;
 import com.csci360.electionapp.util.DBConnection;
 
@@ -31,25 +31,19 @@ import javafx.stage.Stage;
 public class CastVoteController {
 	
 	
-	//For viewing the current ballets 
+	//For viewing the current ballots and ballot candidates
 	@FXML
-	public TableView<Ballet> balletTable;
-	
+	public TableView<Ballot> ballotTable;
 	@FXML
-	private TableColumn<Ballet, String> balletNameColumn;
-	
+	private TableColumn<Ballot, String> ballotNameColumn;	
 	@FXML
-	public TableView<Canidate> canidateTable;
-	
+	public TableView<Candidate> candidateTable;	
 	@FXML
-	private TableColumn<Canidate, String> canidateFirstNameColumn;
-	
+	private TableColumn<Candidate, String> candidateFirstNameColumn;
 	@FXML
-	private TableColumn<Canidate, String> canidateLastNameColumn;
+	private TableColumn<Candidate, String> candidateLastNameColumn;	
 	
 	@FXML
-	
-	
 	public void initialize() {
 		try {
 			updateDetails();
@@ -76,70 +70,75 @@ public class CastVoteController {
 			throw e;
 		} 
     }
-
+    
+	/*
+	 * Show available ballots that a voter are eligible to vote for
+	 */
     public void updateDetails() throws Exception {
     	
-		balletNameColumn.setCellValueFactory(cellData -> cellData.getValue().balletNameProperty());
-		balletTable.setItems(DBConnection.getAllBallets());
+    	int userID = LoginScreenController.getUserLogedIn().getVoterID();	
+		ballotTable.setItems(DBConnection.getVotersAvailableBallots(userID));
+		ballotNameColumn.setCellValueFactory(cellData -> cellData.getValue().ballotNameProperty());
 		
-
         // Listen for selection changes and show the person details when changed.
-        balletTable.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> showBalletDetails(newValue));
-
+        ballotTable.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> showBallotDetails(newValue));
     }
     
-    public void showBalletDetails(Ballet ballet) {
+	/*
+	 * Show the ballot candidates
+	 */    
+    public void showBallotDetails(Ballot ballot) {
     	
-    	if(ballet != null){
+    	if(ballot != null){
     		
-    		ArrayList<Canidate> newArray= new ArrayList<Canidate>(ballet.getCanidates());
-    		ObservableList<Canidate> canidates = FXCollections.observableArrayList(newArray);
-    		canidateTable.setItems(canidates);
+    		ArrayList<Candidate> newArray= new ArrayList<Candidate>(ballot.getCandidates());
+    		ObservableList<Candidate> candidates = FXCollections.observableArrayList(newArray);
+    		candidateTable.setItems(candidates);
     		
-            canidateFirstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
-            canidateLastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
-            
+            candidateFirstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
+            candidateLastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());        
 
     	}
-    	else {
-    		
-    		canidateTable.setItems(null);
+    	else {	
+    		candidateTable.setItems(null);
     	}
     }
-
     
+	/*
+	 * Cast vote for what candidate is selected, then delete the ballot from the table so user can't vote more then once. 
+	 * Insert into DB
+	 */   
     public void castVote() {
-    	
-    	
-    	int selectedIndex = canidateTable.getSelectionModel().getSelectedIndex();  
-    	Canidate canidate = canidateTable.getSelectionModel().getSelectedItem();
-    	Ballet ballet = balletTable.getSelectionModel().getSelectedItem();
+    	    	
+    	int selectedIndex = candidateTable.getSelectionModel().getSelectedIndex();  
+    	Candidate candidate = candidateTable.getSelectionModel().getSelectedItem();
+    	Ballot ballot = ballotTable.getSelectionModel().getSelectedItem();
     	
     	if(selectedIndex >= 0){
     		
-    		int canidateID = canidate.getCanidateID();
-    		int balletID = ballet.getBalletID();
+    		int candidateID = candidate.getCandidateID();
+    		int ballotID = ballot.getBallotID();
     		int userID = LoginScreenController.getUserLogedIn().getVoterID();
     		
     		try {
     			
-				DBConnection.castVoteQuery(userID,balletID, canidateID);
+				DBConnection.castVoteQuery(userID, ballotID, candidateID);
+		    	showBallotDetails(null);
+				updateDetails();			
 				
 			} catch (Exception e) {
 				
 				e.printStackTrace();
 			}
-            
-
     	}
     	else {
     		
             Alert alert = new Alert(AlertType.WARNING);
             alert.initOwner(BetterBallot.getPrimaryStage());
             alert.setTitle("No Selection");
-            alert.setHeaderText("No Canidate Selected");
-            alert.setContentText("Please select a canidate to cast vote!");
+            alert.setHeaderText("No Candidate Selected");
+            alert.setContentText("Please select a candidate to cast vote!");
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(getClass().getResource("/com/csci360/electionapp/view/Style.css").toExternalForm());
             dialogPane.getStyleClass().add("alert");

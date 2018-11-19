@@ -3,21 +3,21 @@ package com.csci360.electionapp.model;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Canidate {
+public class Candidate {
  	private final StringProperty firstName;
     private final StringProperty lastName;
-    private final int canidateID;
+    private final int candidateID;
     
     
-    public Canidate() {
+    public Candidate() {
         this(null, null, -1);
     } 
     
-    public Canidate(String firstName, String lastName, int canidateID) {
+    public Candidate(String firstName, String lastName, int candidateID) {
     	
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
-        this.canidateID = canidateID;
+        this.candidateID = candidateID;
     } 
     public String getFirstName() {
         return firstName.get();
@@ -42,8 +42,8 @@ public class Canidate {
     public StringProperty lastNameProperty() {
         return lastName;
     }
-    public int getCanidateID() {
-    	return canidateID;
+    public int getCandidateID() {
+    	return candidateID;
     }
     
 }

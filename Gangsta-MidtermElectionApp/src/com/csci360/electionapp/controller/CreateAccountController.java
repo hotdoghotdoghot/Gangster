@@ -24,12 +24,10 @@ public class CreateAccountController {
 
     @FXML
     private TextField lastNameField;
-    
-    
+        
 	/*
 	 * Switch scene to Login Screen.
-	 */
-    
+	 */   
     public void goToLoginScreen(ActionEvent event)throws Exception {
 		try {		
     		Parent loginParent = FXMLLoader.load(getClass().getResource("/com/csci360/electionapp/view/LoginScreen.fxml"));
@@ -46,16 +44,15 @@ public class CreateAccountController {
      * Adds a new account for the better ballet
      */
     public void createAccount(ActionEvent event) throws Exception {
-    		
-    	
-    		// Get fields from TextFields 
+    		   	
+    	// Get fields from TextFields 
 		String userId =userIdField.getText();
 		String password = passwordField.getText();
 		String firstName =fistNameField.getText();
 		String lastName = lastNameField.getText();
 		
 		//Connect to DB and Insert into user table. 
-    		try {
+    	try {
     			
     		DBConnection.addAccountQuery(userId, password, firstName, lastName);
     		Parent loginParent = FXMLLoader.load(getClass().getResource("/com/csci360/electionapp/view/LoginScreen.fxml"));
@@ -64,7 +61,7 @@ public class CreateAccountController {
 			loginStage.setScene(loginScene);
 			loginStage.show();
     				
-    		}catch (Exception e) {
+    	}catch (Exception e) {
 				throw e;
 			} 	
     		

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-image: url(&quot;/com/csci360/electionapp/images/BetterBallotDashboardBalletConfig.jpg&quot;); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.csci360.electionapp.controller.ConfigureBalletController">
+<AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-image: url(&quot;/com/csci360/electionapp/images/BetterBallotDashboardBallotConfig.jpg&quot;); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.csci360.electionapp.controller.ConfigureBallotController">
    <children>
       <VBox layoutX="1.0" layoutY="41.0" prefHeight="559.0" prefWidth="147.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="452.0" AnchorPane.topAnchor="41.0">
          <children>
@@ -30,21 +30,21 @@
       </HBox>
       <ScrollPane id="scroll-pane" hbarPolicy="NEVER" layoutX="194.0" layoutY="70.0" prefHeight="490.0" prefWidth="161.0" stylesheets="@Style.css" vbarPolicy="ALWAYS">
          <content>
-            <TableView id="table-view" fx:id="balletTable" prefHeight="490.0" prefWidth="145.0" stylesheets="@Style.css">
+            <TableView id="table-view" fx:id="ballotTable" prefHeight="490.0" prefWidth="145.0" stylesheets="@Style.css">
                 <placeholder>
         			<Label text="" />
     			</placeholder>
               <columns>
-                <TableColumn fx:id="balletNameColumn" editable="false" prefWidth="144.0" text="Title" />
+                <TableColumn fx:id="ballotNameColumn" editable="false" prefWidth="144.0" text="Title" />
               </columns>
             </TableView>
          </content></ScrollPane>
       <ScrollPane id="scroll-pane" hbarPolicy="NEVER" layoutX="377.0" layoutY="70.0" prefHeight="444.0" prefWidth="198.0" stylesheets="@Style.css" vbarPolicy="ALWAYS">
          <content>
-            <TableView id="table-view" fx:id="canidateTable" prefHeight="444.0" prefWidth="198.0" stylesheets="@Style.css">
+            <TableView id="table-view" fx:id="candidateTable" prefHeight="444.0" prefWidth="198.0" stylesheets="@Style.css">
                <columns>
-                  <TableColumn fx:id="canidateFirstNameColumn" editable="false" prefWidth="90.0" text="First Name" />
-                  <TableColumn fx:id="canidateLastNameColumn" editable="false" prefWidth="90.0" text="Last Name" />
+                  <TableColumn fx:id="candidateFirstNameColumn" editable="false" prefWidth="90.0" text="First Name" />
+                  <TableColumn fx:id="candidateLastNameColumn" editable="false" prefWidth="90.0" text="Last Name" />
                </columns>
                <placeholder>
                   <Label text="" />
@@ -56,7 +56,7 @@
          <children>
             <HBox prefHeight="59.0" prefWidth="211.0">
                <children>
-                  <Button id="button" mnemonicParsing="false" onAction="#showCreateBallet" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: transparent;" stylesheets="@Style.css" text="Add" textAlignment="CENTER" textFill="#454b4f">
+                  <Button id="button" mnemonicParsing="false" onAction="#showCreateBallot" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: transparent;" stylesheets="@Style.css" text="Add" textAlignment="CENTER" textFill="#454b4f">
                      <HBox.margin>
                         <Insets left="10.0" top="27.0" />
                      </HBox.margin>
@@ -64,7 +64,7 @@
                         <Font size="12.0" />
                      </font>
                   </Button>
-                  <Button id="button" mnemonicParsing="false" onAction="#showEditBallet" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: transparent;" stylesheets="@Style.css" text="Edit" textAlignment="CENTER" textFill="#454b4f">
+                  <Button id="button" mnemonicParsing="false" onAction="#showEditBallot" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: transparent;" stylesheets="@Style.css" text="Edit" textAlignment="CENTER" textFill="#454b4f">
                      <HBox.margin>
                         <Insets left="15.0" top="27.0" />
                      </HBox.margin>
@@ -83,7 +83,7 @@
                </children>
             </HBox>
          </children></VBox>
-      <Text fill="#454b4f" layoutX="435.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Canidates" wrappingWidth="67.0" />
-      <Text fill="#454b4f" layoutX="247.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ballets" wrappingWidth="44.0" />
+      <Text fill="#454b4f" layoutX="435.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Candidates" wrappingWidth="67.0" />
+      <Text fill="#454b4f" layoutX="247.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ballots" wrappingWidth="44.0" />
    </children>
 </AnchorPane>

@@ -25,16 +25,24 @@ public class BetterBallot extends Application {
     
 	@Override
 	public void start(Stage primaryStage) {
+		
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Better Ballot");
 
        initRootLayout();
+       
+       /*
+        * Created the methods below for debugging and development,
+        * Uncomment any of the methods to go straight to that screen
+        * Keep in mind you skip logging in so many function that uses the user info may not work.
+        */
        //showLogin();
-       //showMainMenu();
-      showVoterMenu();
-      // showBalletConfigDialog();
+       showMainMenu();
+       //showVoterMenu();
+       //showBallotConfigDialog();
 	}
 	
+	//initializer 
     public void initRootLayout() {
         try {
             // Load root layout from fxml file.
@@ -51,7 +59,6 @@ public class BetterBallot extends Application {
             e.printStackTrace();
         }
     }
-    
     
     //For Initial Startup
     public void showLogin() {
@@ -98,14 +105,14 @@ public class BetterBallot extends Application {
         }
     }
     //For Debugging and Developing 
-    public void showBalletConfigDialog() {
+    public void showBallotConfigDialog() {
         try {
             //Show login screen.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(BetterBallot.class.getResource("/com/csci360/electionapp/view/AddBalletDialog.fxml"));
+            loader.setLocation(BetterBallot.class.getResource("/com/csci360/electionapp/view/AddBallotDialog.fxml"));
             AnchorPane mainMenu = (AnchorPane) loader.load();            
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Create Ballet");
+            dialogStage.setTitle("Create Ballot");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
             Scene Dialogscene = new Scene(mainMenu);

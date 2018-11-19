@@ -1,6 +1,6 @@
 package com.csci360.electionapp.controller;
 
-import com.csci360.electionapp.model.Ballet;
+import com.csci360.electionapp.model.Ballot;
 import com.csci360.electionapp.util.DBConnection;
 
 import javafx.collections.FXCollections;
@@ -18,8 +18,6 @@ import javafx.stage.Stage;
 
 public class AdminMainMenuController {
 	
-
-
 	/*
 	 * Switch scene to Login Screen. (Used for Logging out)
 	 */
@@ -38,7 +36,7 @@ public class AdminMainMenuController {
     }
     
 	/*
-	 * Administration Button Clicked. (Used for ballet administration)
+	 * Administration Button Clicked. (Used for ballot administration)
 	 */
     public void adminView(ActionEvent event)throws Exception {
 		try {		
@@ -70,8 +68,7 @@ public class AdminMainMenuController {
 			throw e;
 		} 
     }
-    
-    
+     
 	/*
 	 * Setting Button Clicked. (Used for viewing account settings)
 	 */
@@ -90,15 +87,18 @@ public class AdminMainMenuController {
 		} 
     }
     
-	public void configureBallets(ActionEvent event)throws Exception {
+	/*
+	 * Configure Ballots Button Clicked. (Used for adding/editing/deleting ballots for a admin user)
+	 */  
+	public void configureBallots(ActionEvent event)throws Exception {
 
 		try {
 			
-    		Parent configBalletParent =  FXMLLoader.load(getClass().getResource("/com/csci360/electionapp/view/AdminMainMenuConfigBallet.fxml"));
-    		Scene configBalletScene = new Scene(configBalletParent);
-			Stage configBalletStage = (Stage)((Node)event.getSource()).getScene().getWindow(); 
-			configBalletStage.setScene(configBalletScene);
-			configBalletStage.show();
+    		Parent configBallotParent =  FXMLLoader.load(getClass().getResource("/com/csci360/electionapp/view/AdminMainMenuConfigBallot.fxml"));
+    		Scene configBallotScene = new Scene(configBallotParent);
+			Stage configBallotStage = (Stage)((Node)event.getSource()).getScene().getWindow(); 
+			configBallotStage.setScene(configBallotScene);
+			configBallotStage.show();
 			
 			
 		}catch (Exception e) {
@@ -108,7 +108,9 @@ public class AdminMainMenuController {
  
     }
 	
-	
+	/*
+	 * Configure Users Button Clicked. (Used for adding/editing/deleting users for a admin user)
+	 */ 	
 	public void configureUsers(ActionEvent event)throws Exception {
     	
 

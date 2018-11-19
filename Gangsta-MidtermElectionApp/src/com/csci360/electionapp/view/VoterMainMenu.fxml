@@ -32,9 +32,9 @@
       </HBox>
       <ScrollPane id="scroll-pane" hbarPolicy="NEVER" layoutX="189.0" layoutY="55.0" prefHeight="490.0" prefWidth="161.0" stylesheets="@Style.css" vbarPolicy="ALWAYS">
          <content>
-            <TableView id="table-view" fx:id="balletTable" prefHeight="490.0" prefWidth="145.0" stylesheets="@Style.css">
+            <TableView id="table-view" fx:id="ballotTable" prefHeight="490.0" prefWidth="145.0" stylesheets="@Style.css">
                <columns>
-                  <TableColumn fx:id="balletNameColumn" editable="false" prefWidth="144.0" text="Select Ballet:" />
+                  <TableColumn fx:id="ballotNameColumn" editable="false" prefWidth="144.0" text="Select Ballot:" />
                </columns>
                <placeholder>
                   <Label text="" />
@@ -44,10 +44,10 @@
       </ScrollPane>
       <ScrollPane id="scroll-pane" hbarPolicy="NEVER" layoutX="375.0" layoutY="55.0" prefHeight="444.0" prefWidth="198.0" stylesheets="@Style.css" vbarPolicy="ALWAYS">
          <content>
-            <TableView id="table-view" fx:id="canidateTable" prefHeight="444.0" prefWidth="198.0" stylesheets="@Style.css">
+            <TableView id="table-view" fx:id="candidateTable" prefHeight="444.0" prefWidth="198.0" stylesheets="@Style.css">
                <columns>
-                  <TableColumn fx:id="canidateFirstNameColumn" editable="false" prefWidth="90.0" text="First Name" />
-                  <TableColumn fx:id="canidateLastNameColumn" editable="false" prefWidth="90.0" text="Last Name" />
+                  <TableColumn fx:id="candidateFirstNameColumn" editable="false" prefWidth="90.0" text="First Name" />
+                  <TableColumn fx:id="candidateLastNameColumn" editable="false" prefWidth="90.0" text="Last Name" />
                </columns>
                <placeholder>
                   <Label text="" />

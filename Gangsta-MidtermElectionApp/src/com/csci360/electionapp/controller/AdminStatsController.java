@@ -1,37 +1,50 @@
 package com.csci360.electionapp.controller;
 
-import com.csci360.electionapp.model.User;
+import java.util.ArrayList;
+
+import com.csci360.electionapp.BetterBallot;
+import com.csci360.electionapp.model.Ballot;
+import com.csci360.electionapp.model.Candidate;
 import com.csci360.electionapp.util.DBConnection;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class ConfigureUserController {
+
+public class AdminStatsController {
 	
 	@FXML
-	private TableView<User> usersTable;
+	public TableView<Ballot> ballotTable;
 	@FXML
-	private TableColumn<User, String> usersColumn;
-	@FXML	
+	private TableColumn<Ballot, String> ballotNameColumn;
+    @FXML
+    private PieChart pieChart;
+	
+
+	@FXML
 	public void initialize() {
-		try {
-			
-			usersColumn.setCellValueFactory(cellData -> cellData.getValue().userNameProperty());
-			usersTable.setItems(DBConnection.getAllUsers());
+		try {	    	
+	    	//Fill table with availble ballots 
+			updateDetails(); 
+			showBallotStats(null);		 
 			
 		} catch (Exception e) {
-			
+		
 			e.printStackTrace();
 		}
 	   }
-
 	/*
 	 * Switch scene to Login Screen. (Used for Logging out)
 	 */
@@ -50,7 +63,7 @@ public class ConfigureUserController {
     }
     
 	/*
-	 * Administration Button Clicked. (Used for ballet administration)
+	 * Administration Button Clicked. (Used for ballot administration)
 	 */
     public void adminView(ActionEvent event)throws Exception {
 		try {		
@@ -67,27 +80,10 @@ public class ConfigureUserController {
     }
     
 	/*
-	 * Stats Button Clicked. (Used for viewing stats)
-	 */
-    public void statsView(ActionEvent event)throws Exception {
-		try {		
-    		Parent statsParent = FXMLLoader.load(getClass().getResource("/com/csci360/electionapp/view/AdminMainMenuStats.fxml"));
-    		Scene statsScene = new Scene(statsParent);
-			Stage statsStage = (Stage)((Node)event.getSource()).getScene().getWindow(); 
-			statsStage.setScene(statsScene);
-			statsStage.show();
-			
-		}catch (Exception e) {
-			
-			throw e;
-		} 
-    }
-    
-    
-	/*
 	 * Setting Button Clicked. (Used for viewing account settings)
 	 */
     public void settingsView(ActionEvent event)throws Exception {
+    	
 		try {		
     		Parent settingsParent = FXMLLoader.load(getClass().getResource("/com/csci360/electionapp/view/AdminMainMenuSettings.fxml"));
     		Scene settingsScene = new Scene(settingsParent);
@@ -100,6 +96,44 @@ public class ConfigureUserController {
 			throw e;
 		} 
     }
-        
+    
+	/*
+	 * Show all candidates for the ballot that is selected
+	 */   
+    public void showBallotStats(Ballot ballot) {
+    	
+    	if(ballot != null){
+    		
+    		try {
+    			pieChart.setTitle(ballot.getBallotName() + " Stats");
+    			
+    			pieChart.resize(1000, 1000);
+    			pieChart.setOpacity(100);
+				pieChart.setData(DBConnection.getCurrentStandings((ballot.getBallotID())));
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	else {
+    		pieChart.setOpacity(0);
+    	}
+    }
+    
+	/*
+	 * Used for updated ballot table when a change occurs. 
+	 */ 
+    public void updateDetails() throws Exception {
+    	
+		ballotNameColumn.setCellValueFactory(cellData -> cellData.getValue().ballotNameProperty());
+		ballotTable.setItems(DBConnection.getAllBallots());
 
+        
+        // Listen for selection changes and show the person details when changed.
+        ballotTable.getSelectionModel().selectedItemProperty().addListener(
+              (observable, oldValue, newValue) -> showBallotStats(newValue));
+    }
+   
+    
 }
