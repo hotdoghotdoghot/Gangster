@@ -16,6 +16,7 @@ public class BallotTest
     @Before
     public void setUp()
     {
+        int aaaahhhhhh;
         int canidates = 4;
         ArrayList<Candidate> testCandidate = new ArrayList<Candidate>(canidates);
         Candidate testCan1 = new Candidate("slime", "machine", 1);
