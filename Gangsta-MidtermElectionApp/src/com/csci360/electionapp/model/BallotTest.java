@@ -17,8 +17,8 @@ public class BallotTest
     public void setUp()
     {
         int aaaahhhhhh;
-        int canidates = 4;
-        ArrayList<Candidate> testCandidate = new ArrayList<Candidate>(canidates);
+        int numCandidates = 4;
+        ArrayList<Candidate> testCandidate = new ArrayList<Candidate>(numCandidates);
         Candidate testCan1 = new Candidate("slime", "machine", 1);
         Candidate testCan2 = new Candidate("miles", "donB", 2);
         Candidate testCan3 = new Candidate("sad", "contest", 3);
@@ -51,5 +51,6 @@ public class BallotTest
     public void addCandidate() throws Exception
     {
         Candidate testCan4 = new Candidate("douglas", "falcon", 4);
+
     }
 }

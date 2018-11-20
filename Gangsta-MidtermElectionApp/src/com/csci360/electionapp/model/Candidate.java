@@ -19,7 +19,8 @@ public class Candidate {
         this.lastName = new SimpleStringProperty(lastName);
         this.candidateID = candidateID;
     } 
-    public String getFirstName() {
+    public String getFirstName()
+    {
         return firstName.get();
     }
 
