@@ -47,10 +47,4 @@ public class BallotTest
         testBallot.setBallotName("bigTest");
         assertEquals("bigTest", testBallot.getBallotName());
     }
-    @Test
-    public void addCandidate() throws Exception
-    {
-        Candidate testCan4 = new Candidate("douglas", "falcon", 4);
-
-    }
 }

@@ -76,5 +76,4 @@ public class User {
 	        return voterID;
 	    }
 
-
 }
