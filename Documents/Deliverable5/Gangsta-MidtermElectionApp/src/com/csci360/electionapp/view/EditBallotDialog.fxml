@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="500.0" maxWidth="500.0" minHeight="500.0" minWidth="500.0" prefHeight="500.0" prefWidth="500.0" style="-fx-background-image: url(&quot;/com/csci360/electionapp/images/configBallot.jpg&quot;); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.csci360.electionapp.controller.EditBallotController">
+   <children>
+      <TextField fx:id="fName1Field" layoutX="106.0" layoutY="151.0" opacity="0.35" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: transparent;" />
+      <TextField fx:id="fName2Field" layoutX="106.0" layoutY="203.0" opacity="0.46" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: transparent;" />
+      <TextField fx:id="fName3Field" layoutX="106.0" layoutY="249.0" opacity="0.46" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: transparent;" />
+      <TextField fx:id="fName4Field" layoutX="106.0" layoutY="300.0" opacity="0.46" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: transparent;" />
+      <TextField fx:id="fName5Field" layoutX="106.0" layoutY="347.0" opacity="0.46" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: transparent;" />
+      <TextField fx:id="lName5Field" layoutX="266.0" layoutY="347.0" opacity="0.46" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: transparent;" />
+      <TextField fx:id="lName4Field" layoutX="266.0" layoutY="300.0" opacity="0.46" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: transparent;" />
+      <TextField fx:id="lName3Field" layoutX="266.0" layoutY="249.0" opacity="0.46" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: transparent;" />
+      <TextField fx:id="lName2Field" layoutX="266.0" layoutY="203.0" opacity="0.46" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: transparent;" />
+      <TextField fx:id="lName1Field" layoutX="266.0" layoutY="151.0" opacity="0.46" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: transparent;" />
+      <TextField fx:id="ballotNameField" layoutX="210.0" layoutY="78.0" opacity="0.35" prefHeight="28.0" prefWidth="128.0" style="-fx-background-color: transparent;" />
+      <Button layoutX="154.0" layoutY="388.0" mnemonicParsing="false" onAction="#updateBallot" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="createAccountScreenButton" stylesheets="@Style.css" text="Save" />
+      <Button layoutX="265.0" layoutY="389.0" mnemonicParsing="false" onAction="#closeDialog" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: transparent;" styleClass="createAccountScreenButton" stylesheets="@Style.css" text="Close" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-image: url(&quot;/com/csci360/electionapp/images/BetterBallotDashboardSettings.jpg&quot;); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.csci360.electionapp.controller.AdminMainMenuController">
+   <children>
+      <VBox layoutX="1.0" layoutY="41.0" prefHeight="559.0" prefWidth="147.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="452.0" AnchorPane.topAnchor="41.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#adminView" prefHeight="26.0" prefWidth="147.0" style="-fx-background-color: transparent;" styleClass="goToLoginPageButton" stylesheets="@Style.css" text="Administration" textFill="#9ba5ac" />
+            <Button mnemonicParsing="false" onAction="#statsView" prefHeight="35.0" prefWidth="147.0" style="-fx-background-color: transparent;" styleClass="createAccountButton" stylesheets="@Style.css" text="Statistics         " textFill="#9ba5ac" />
+            <Button mnemonicParsing="false" onAction="#settingsView" prefHeight="35.0" prefWidth="147.0" style="-fx-background-color: transparent;" styleClass="createAccountButton" stylesheets="@Style.css" text="Settings          " textFill="#9ba5ac" />
+         </children></VBox>
+      <HBox layoutX="154.0" prefHeight="39.0" prefWidth="600.0" AnchorPane.bottomAnchor="568.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#goToLoginScreen" prefHeight="23.0" prefWidth="67.0" style="-fx-background-color: transparent;" styleClass="goToLoginPageButton" stylesheets="@Style.css" text="Logout" textFill="#9ba5ac">
+               <HBox.margin>
+                  <Insets left="530.0" top="5.0" />
+               </HBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

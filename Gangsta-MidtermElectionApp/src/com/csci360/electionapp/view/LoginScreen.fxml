@@ -46,7 +46,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Label>
-            <Button mnemonicParsing="false" onAction="#goToCreateUser" prefHeight="27.0" prefWidth="117.0" style="-fx-background-color: transparent;" styleClass="createAccountButton" stylesheets="@Style.css" text="Create Account" />
+            <Button mnemonicParsing="false" onAction="#goToCreateUser" prefHeight="27.0" prefWidth="138.0" style="-fx-background-color: transparent;" styleClass="createAccountButton" stylesheets="@Style.css" text="Register To Vote" />
          </children>
       </VBox>
    </children>

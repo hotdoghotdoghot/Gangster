@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-image: url(&quot;/com/csci360/electionapp/images/BetterBallotDashboardBallotConfig.jpg&quot;); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.csci360.electionapp.controller.ConfigureUserController">
+   <children>
+      <VBox layoutX="1.0" layoutY="41.0" prefHeight="559.0" prefWidth="147.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="452.0" AnchorPane.topAnchor="41.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#adminView" prefHeight="26.0" prefWidth="147.0" style="-fx-background-color: transparent;" styleClass="goToLoginPageButton" stylesheets="@Style.css" text="Administration" textFill="#9ba5ac" />
+            <Button mnemonicParsing="false" onAction="#statsView" prefHeight="35.0" prefWidth="147.0" style="-fx-background-color: transparent;" styleClass="createAccountButton" stylesheets="@Style.css" text="Statistics         " textFill="#9ba5ac" />
+            <Button mnemonicParsing="false" onAction="#settingsView" prefHeight="35.0" prefWidth="147.0" style="-fx-background-color: transparent;" styleClass="createAccountButton" stylesheets="@Style.css" text="Settings          " textFill="#9ba5ac" />
+         </children></VBox>
+      <HBox layoutX="154.0" prefHeight="39.0" prefWidth="600.0" AnchorPane.bottomAnchor="568.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#goToLoginScreen" prefHeight="23.0" prefWidth="67.0" style="-fx-background-color: transparent;" styleClass="goToLoginPageButton" stylesheets="@Style.css" text="Logout" textFill="#9ba5ac">
+               <HBox.margin>
+                  <Insets left="530.0" top="5.0" />
+               </HBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+         </children>
+      </HBox>
+      <ScrollPane id="scroll-pane" hbarPolicy="NEVER" layoutX="194.0" layoutY="70.0" prefHeight="490.0" prefWidth="161.0" stylesheets="@Style.css" vbarPolicy="ALWAYS">
+         <content>
+            <TableView id="table-view" fx:id="usersTable" prefHeight="490.0" prefWidth="145.0" stylesheets="@Style.css">
+                <placeholder>
+        			<Label text="" />
+    			</placeholder>
+              <columns>
+                <TableColumn fx:id="usersColumn" editable="false" prefWidth="144.0" text="Users" />
+              </columns>
+            </TableView>
+         </content></ScrollPane>
+      <VBox layoutX="363.0" layoutY="68.0" prefHeight="498.0" prefWidth="211.0">
+         <children>
+            <GridPane prefHeight="450.0" prefWidth="196.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+            <HBox prefHeight="82.0" prefWidth="196.0">
+               <children>
+                  <Button id="button" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: transparent;" stylesheets="@Style.css" text="Add" textAlignment="CENTER" textFill="#454b4f">
+                     <HBox.margin>
+                        <Insets left="10.0" top="27.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Button>
+                  <Button id="button" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: transparent;" stylesheets="@Style.css" text="Edit" textAlignment="CENTER" textFill="#454b4f">
+                     <HBox.margin>
+                        <Insets left="15.0" top="27.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Button>
+                  <Button id="button" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: transparent;" stylesheets="@Style.css" text="Delete" textAlignment="CENTER" textFill="#454b4f">
+                     <HBox.margin>
+                        <Insets left="10.0" top="27.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children></VBox>
+   </children>
+</AnchorPane>

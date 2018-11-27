@@ -76,7 +76,7 @@ public class DBConnection {
 		try{
 			//Connect to MySQL and Query DB
 			mySqlConnection();		
-			statement = connect.prepareStatement("SELECT ID, USERID, User_Type, First_Name, Last_Name, COUNT(*) FROM evote.users WHERE USERID = ? AND PASSWORD = ?");
+			statement = connect.prepareStatement("SELECT ID, USERID, User_Type, First_Name, Last_Name, COUNT(*) FROM evote.users WHERE USERID = ? AND PASSWORD = SHA1(?)");
 			statement.setString(1, userid);
 			statement.setString(2, password);
 			resultSet = statement.executeQuery();
@@ -119,7 +119,7 @@ public class DBConnection {
 		try{
 			
 			mySqlConnection();	
-			statement = connect.prepareStatement("INSERT INTO users(USERID,PASSWORD,User_Type, First_Name,Last_Name) VALUES (?, ?, 'voter', ?,?)");
+			statement = connect.prepareStatement("INSERT INTO users(USERID,PASSWORD,User_Type, First_Name,Last_Name) VALUES (?,SHA1(?), 'voter', ?,?)");
 			statement.setString(1, userid);
 			statement.setString(2, password);
 			statement.setString(3, firstName);

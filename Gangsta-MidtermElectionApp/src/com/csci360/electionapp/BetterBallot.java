@@ -36,8 +36,8 @@ public class BetterBallot extends Application {
         * Uncomment any of the methods to go straight to that screen
         * Keep in mind you skip logging in so many function that uses the user info may not work.
         */
-       //showLogin();
-       showMainMenu();
+       showLogin();
+       //showMainMenu();
        //showVoterMenu();
        //showBallotConfigDialog();
 	}
@@ -135,4 +135,3 @@ public class BetterBallot extends Application {
 		return null;
 	}
 }
-

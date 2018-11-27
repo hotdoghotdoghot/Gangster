@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-image: url(&quot;/com/csci360/electionapp/images/BetterBallotDashboardBallotConfig.jpg&quot;); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.csci360.electionapp.controller.ConfigureBallotController">
+   <children>
+      <VBox layoutX="1.0" layoutY="41.0" prefHeight="559.0" prefWidth="147.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="452.0" AnchorPane.topAnchor="41.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#adminView" prefHeight="26.0" prefWidth="147.0" style="-fx-background-color: transparent;" styleClass="goToLoginPageButton" stylesheets="@Style.css" text="Administration" textFill="#9ba5ac" />
+            <Button mnemonicParsing="false" onAction="#statsView" prefHeight="35.0" prefWidth="147.0" style="-fx-background-color: transparent;" styleClass="createAccountButton" stylesheets="@Style.css" text="Statistics         " textFill="#9ba5ac" />
+            <Button mnemonicParsing="false" onAction="#settingsView" prefHeight="35.0" prefWidth="147.0" style="-fx-background-color: transparent;" styleClass="createAccountButton" stylesheets="@Style.css" text="Settings          " textFill="#9ba5ac" />
+         </children></VBox>
+      <HBox layoutX="154.0" prefHeight="39.0" prefWidth="600.0" AnchorPane.bottomAnchor="568.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#goToLoginScreen" prefHeight="23.0" prefWidth="67.0" style="-fx-background-color: transparent;" styleClass="goToLoginPageButton" stylesheets="@Style.css" text="Logout" textFill="#9ba5ac">
+               <HBox.margin>
+                  <Insets left="530.0" top="5.0" />
+               </HBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+         </children>
+      </HBox>
+      <ScrollPane id="scroll-pane" hbarPolicy="NEVER" layoutX="194.0" layoutY="70.0" prefHeight="490.0" prefWidth="161.0" stylesheets="@Style.css" vbarPolicy="ALWAYS">
+         <content>
+            <TableView id="table-view" fx:id="ballotTable" prefHeight="490.0" prefWidth="145.0" stylesheets="@Style.css">
+                <placeholder>
+        			<Label text="" />
+    			</placeholder>
+              <columns>
+                <TableColumn fx:id="ballotNameColumn" editable="false" prefWidth="144.0" text="Title" />
+              </columns>
+            </TableView>
+         </content></ScrollPane>
+      <ScrollPane id="scroll-pane" hbarPolicy="NEVER" layoutX="377.0" layoutY="70.0" prefHeight="444.0" prefWidth="198.0" stylesheets="@Style.css" vbarPolicy="ALWAYS">
+         <content>
+            <TableView id="table-view" fx:id="candidateTable" prefHeight="444.0" prefWidth="198.0" stylesheets="@Style.css">
+               <columns>
+                  <TableColumn fx:id="candidateFirstNameColumn" editable="false" prefWidth="90.0" text="First Name" />
+                  <TableColumn fx:id="candidateLastNameColumn" editable="false" prefWidth="90.0" text="Last Name" />
+               </columns>
+               <placeholder>
+                  <Label text="" />
+               </placeholder>
+            </TableView>
+         </content>
+      </ScrollPane>
+      <VBox layoutX="363.0" layoutY="501.0" prefHeight="62.0" prefWidth="211.0">
+         <children>
+            <HBox prefHeight="59.0" prefWidth="211.0">
+               <children>
+                  <Button id="button" mnemonicParsing="false" onAction="#showCreateBallot" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: transparent;" stylesheets="@Style.css" text="Add" textAlignment="CENTER" textFill="#454b4f">
+                     <HBox.margin>
+                        <Insets left="10.0" top="27.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Button>
+                  <Button id="button" mnemonicParsing="false" onAction="#showEditBallot" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: transparent;" stylesheets="@Style.css" text="Edit" textAlignment="CENTER" textFill="#454b4f">
+                     <HBox.margin>
+                        <Insets left="15.0" top="27.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Button>
+                  <Button id="button" mnemonicParsing="false" onAction="#deleteBallot" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: transparent;" stylesheets="@Style.css" text="Delete" textAlignment="CENTER" textFill="#454b4f">
+                     <HBox.margin>
+                        <Insets left="10.0" top="27.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children></VBox>
+      <Text fill="#454b4f" layoutX="435.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Candidates" wrappingWidth="67.0" />
+      <Text fill="#454b4f" layoutX="247.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ballots" wrappingWidth="44.0" />
+   </children>
+</AnchorPane>

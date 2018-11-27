@@ -2,6 +2,7 @@ package com.csci360.electionapp.controller;
 
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import com.csci360.electionapp.BetterBallot;
 import com.csci360.electionapp.model.Ballot;
@@ -19,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -119,14 +121,33 @@ public class CastVoteController {
     		
     		int candidateID = candidate.getCandidateID();
     		int ballotID = ballot.getBallotID();
-    		int userID = LoginScreenController.getUserLogedIn().getVoterID();
+    		LoginScreenController.getUserLogedIn();
+			int userID = User.getVoterID();
     		
     		try {
     			
-				DBConnection.castVoteQuery(userID, ballotID, candidateID);
-		    	showBallotDetails(null);
-				updateDetails();			
-				
+    			
+                Alert alert = new Alert(AlertType.CONFIRMATION);
+                alert.initOwner(BetterBallot.getPrimaryStage());
+                alert.setTitle("Vote Confirmation");
+                alert.setHeaderText("Please Confirm Your Selection");
+                alert.setContentText("Are you sure you want to vote for " + candidate.getFirstName() + " " + candidate.getLastName() + " for "+ ballot.getBallotName()+"?");
+                ButtonType buttonTypeVote = new ButtonType("Vote");
+                ButtonType buttonTypeBack = new ButtonType("Back");
+                DialogPane dialogPane = alert.getDialogPane();
+                dialogPane.getStylesheets().add(getClass().getResource("/com/csci360/electionapp/view/Style.css").toExternalForm());
+                dialogPane.getStyleClass().add("alert");
+                alert.getButtonTypes().setAll(buttonTypeVote, buttonTypeBack);
+                Optional<ButtonType> result =alert.showAndWait();
+                
+                
+    			if(result.get()== buttonTypeVote) {
+    				DBConnection.castVoteQuery(userID, ballotID, candidateID);
+    				showBallotDetails(null);
+    				updateDetails();			
+    			}
+
+    			
 			} catch (Exception e) {
 				
 				e.printStackTrace();

@@ -48,30 +48,32 @@ public class LoginScreenController {
     		User userLoggedIn = DBConnection.loginQuery(userId, password);
     		
     		//for admin user
-    		
-    		if(userLoggedIn.getUserType().equals("admin")) {  
+    		if (userLoggedIn != null) {
+    			if(userLoggedIn.getUserType().equals("admin")) {  
     				
-            	Parent mainMenuParent = FXMLLoader.load(getClass().getResource("/com/csci360/electionapp/view/AdminMainMenu.fxml"));
-            	Scene mainMenuScene = new Scene(mainMenuParent);
-    			Stage mainMenuStage = (Stage)((Node)event.getSource()).getScene().getWindow(); 
-    			mainMenuStage.setScene(mainMenuScene);
-    			mainMenuStage.show();
-    		}
-    		//for voter user
-    		else if(userLoggedIn.getUserType().equals("voter")){
+	            	Parent mainMenuParent = FXMLLoader.load(getClass().getResource("/com/csci360/electionapp/view/AdminMainMenu.fxml"));
+	            	Scene mainMenuScene = new Scene(mainMenuParent);
+	    			Stage mainMenuStage = (Stage)((Node)event.getSource()).getScene().getWindow(); 
+	    			mainMenuStage.setScene(mainMenuScene);
+	    			mainMenuStage.show();
+    			}
+    			//for voter user
+    			else if(userLoggedIn.getUserType().equals("voter")){
     				
-            	Parent mainMenuParent = FXMLLoader.load(getClass().getResource("/com/csci360/electionapp/view/VoterMainMenu.fxml"));
-            	Scene mainMenuScene = new Scene(mainMenuParent);
-    			Stage mainMenuStage = (Stage)((Node)event.getSource()).getScene().getWindow(); 
-    			mainMenuStage.setScene(mainMenuScene);
-    			mainMenuStage.show();
-    		}	
+	            	Parent mainMenuParent = FXMLLoader.load(getClass().getResource("/com/csci360/electionapp/view/VoterMainMenu.fxml"));
+	            	Scene mainMenuScene = new Scene(mainMenuParent);
+	    			Stage mainMenuStage = (Stage)((Node)event.getSource()).getScene().getWindow(); 
+	    			mainMenuStage.setScene(mainMenuScene);
+	    			mainMenuStage.show();
+    			}	
     		//invalid login
-    		else {	
-    			
-    			loginFailed.setText("Invalid Username or Password");
-    		}
+    			else{	
+   			
     				
+    			}
+    		}else {
+    			loginFailed.setText("Invalid Username or Password"); 
+    		}
     		}catch (Exception e) {
 				throw e;
 			} 	

@@ -40,16 +40,17 @@ public class ConfigureBallotController {
 	private TableColumn<Candidate, String> candidateFirstNameColumn;
 	@FXML
 	private TableColumn<Candidate, String> candidateLastNameColumn;
-
-	public static Stage createDialogStage = new Stage(); 
-	public static Stage editDialogStage = new Stage(); 
-	private FXMLLoader editLoader = new FXMLLoader();
-	private FXMLLoader createLoader = new FXMLLoader();
 	
+	public static Stage createDialogStage = new Stage();      
+	public static Stage editDialogStage = new Stage();
+	private FXMLLoader  editLoader = new FXMLLoader();  
+	private FXMLLoader  createLoader = new FXMLLoader();
 
 	@FXML
 	public void initialize() {
 		try {
+        
+
 	    	//Create Ballot Dialog Scene but doesn't show yet. 
 	    	createLoader.setLocation(BetterBallot.class.getResource("/com/csci360/electionapp/view/AddBallotDialog.fxml"));
 	    	AnchorPane createDialogPane = (AnchorPane) createLoader.load();               
@@ -61,14 +62,16 @@ public class ConfigureBallotController {
 	    	
 	    	//Create Edit Dialog Scene but doesn't show yet. 
 	    	editLoader.setLocation(BetterBallot.class.getResource("/com/csci360/electionapp/view/EditBallotDialog.fxml"));
-	    	AnchorPane editDialogPane = (AnchorPane) editLoader.load();   	    		    	
+	    	AnchorPane editDialogPane = (AnchorPane) editLoader.load();  
+	    	Scene editDialogScene = new Scene(editDialogPane);
+	    	editDialogStage.setScene(editDialogScene);
 	    	editDialogStage.setTitle("Edit Ballot");
 	    	editDialogStage.initModality(Modality.WINDOW_MODAL);
 	    	editDialogStage.initOwner(BetterBallot.primaryStage);
-	    	Scene editDialogScene = new Scene(editDialogPane);
-	    	editDialogStage.setScene(editDialogScene);
 	    	
-	    	//Fill table with availble ballots 
+	    	
+	    
+	    	//Fill table with available ballots 
 			updateDetails();      
 			
 		} catch (Exception e) {
@@ -147,14 +150,14 @@ public class ConfigureBallotController {
 	/*
 	 * Show the create ballot dialog with "Add" is selected
 	 */
-    public boolean showCreateBallot(ActionEvent event)throws Exception {
-    	
+    public void showCreateBallot(ActionEvent event)throws Exception {
+
     	CreateBallotController controller = createLoader.getController();
     	controller.setDialogStage(createDialogStage);
     	createDialogStage.showAndWait();
     	showBallotDetails(null);
     	updateDetails();
-    	return controller.isOkClicked();
+    	
         
     }
     
@@ -162,7 +165,7 @@ public class ConfigureBallotController {
 	 * Show the edit ballot dialog with "edit" is selected
 	 */
     public void showEditBallot(ActionEvent event)throws Exception {
-    	
+ 	
     	Ballot selectedBallot = ballotTable.getSelectionModel().getSelectedItem();	
     	EditBallotController controller = editLoader.getController();
     	controller.setDialogStage(editDialogStage);
