@@ -41,9 +41,36 @@
             </TableView>
          </content>
       </ScrollPane>
-      <ScrollPane id="scroll-pane" hbarPolicy="NEVER" layoutX="319.0" layoutY="51.0" prefHeight="457.0" prefWidth="248.0" stylesheets="@Style.css" vbarPolicy="ALWAYS">
+      <ScrollPane id="scroll-pane" hbarPolicy="NEVER" layoutX="321.0" layoutY="41.0" prefHeight="457.0" prefWidth="248.0" stylesheets="@Style.css" vbarPolicy="ALWAYS">
          <content>
-            <PieChart fx:id="pieChart" prefHeight="219.0" prefWidth="252.0" />
+            <VBox prefHeight="458.0" prefWidth="251.0">
+               <children>
+                  <PieChart fx:id="pieChart" prefHeight="270.0" prefWidth="251.0" stylesheets="@Style.css" />
+                  <GridPane fx:id="gridPane" prefHeight="202.0" prefWidth="251.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="10.0" prefWidth="128.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.0" minWidth="10.0" prefWidth="104.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="91.0"  minWidth="10.0" prefWidth="19.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="55.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="115.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="115.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="115.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="115.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="100.0" text="Candidate" textAlignment="CENTER" textFill="#9ba5ac" underline="true">
+                           <opaqueInsets>
+                              <Insets left="20.0" />
+                           </opaqueInsets>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="103.0" text="Current Count" textAlignment="CENTER" textFill="#9ba5ac" underline="true" GridPane.columnIndex="1" />
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
          </content>
       </ScrollPane>
    </children>

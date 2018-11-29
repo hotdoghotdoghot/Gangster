@@ -94,3 +94,25 @@
 .alert:header *.header-panel{
     -fx-background-color: #b4bec3;
 }
+
+
+
+.chart-pie-label-line {
+    -fx-stroke: #b4bec3;
+    -fx-fill: #b4bec3;
+}
+
+.chart-pie-label { 
+    -fx-fill: #b4bec3;
+    -fx-font-size: 1em;
+} 
+.chart-legend {
+   -fx-background-color:  #b4bec3;
+   -fx-fill: #b4bec3;
+}
+
+.chart-title {
+	
+  -fx-text-fill: #b4bec3;
+  -fx-font-size: 1.6em;
+}
